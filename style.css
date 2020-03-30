@@ -1,0 +1,17 @@
+body {
+    font-family: 'Roboto';
+}
+
+.main-container {
+    background: #2E3033;
+}
+
+.main-weather {
+    background-image: url("clouds.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.details {
+    background: white;
+}

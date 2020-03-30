@@ -32,8 +32,9 @@ async function storeWeather() {
 async function displayData() {
     await storeData();
     await storeWeather();
-    body.innerHTML = `locaction: ${userLocation.city}, ${userLocation.region}
-    <br> Current temp: ${userWeather.temp}`;
+    // body.innerHTML = `locaction: ${userLocation.city}, ${userLocation.region}
+    // <br> Current temp: ${userWeather.temp}
+    // <br> ${userWeather.weather.icon}`;
     
     
 }
