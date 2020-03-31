@@ -1,17 +1,52 @@
 body {
     font-family: 'Roboto';
+    display: flex;
+    justify-content: center;
 }
 
 .main-container {
     background: #2E3033;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    min-height: 600px;
+    padding: 7px;
+    border-radius: 4px;
+    ;
 }
 
 .main-weather {
+    display: inline-block;
+    width: 75%;
     background-image: url("clouds.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    background-size: cover;
+    color: white;
+    text-align: center;
+    margin: 8px;
+    position: relative;
+}
+
+
+
+.main-weather h1 {
+    font-weight: 500;
+    font-size: 200px;
+    margin-bottom: -50px;
+    margin-top: 75px;
+}
+
+.main-weather h2 {
+    font-weight: 500;
+    font-size: 38px;
+    margin-top: 15px;
+    ;
 }
 
 .details {
+    margin: 9px;
+    width: 25%;
     background: white;
+    color: #68717E
 }
