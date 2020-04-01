@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   width: 80%;
-  max-width: 1200px;
+  max-width: 1150px;
   min-height: 550px;
   padding: 7px;
   border-radius: 4px;
@@ -58,7 +58,7 @@ body {
 .time-location {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 15px;
   padding-left: 35px;
   padding-right: 35px;
@@ -91,6 +91,8 @@ button:hover {
   background: white;
   color: #68717e;
   margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 12px;
 }
 
 .location-two {
@@ -124,4 +126,35 @@ h4 {
 
 .weather-details {
   border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  padding: 25px;
+  margin-top: -10px;
+}
+
+.wd {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.rc {
+  text-align: right;
+}
+
+.details hr {
+  width: 80%;
+}
+
+.seven-days {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  padding: 25px;
+  margin-top: -20px;
+}
+
+.nsd {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
