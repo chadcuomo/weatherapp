@@ -7,6 +7,9 @@ const displayCloud = document.querySelector('.cloudy');
 const displayPrecip = document.querySelector('.precip');
 const displayHumidity = document.querySelector('.humidity');
 const displayWind = document.querySelector('.wind');
+const weatherContainer = document.querySelector('.main-weather');
+const h2 = document.querySelector('h2');
+const h3 = document.querySelector('h3');
 
 const dayOne = document.querySelector('.day1');
 const oneTemp = document.querySelector('.mon');
@@ -72,10 +75,40 @@ async function storeForecast() {
     console.log(userForecast);
 }
 
+function changeInfo(code) {
+    const thunder = [200,201,202,230,231,232,233];
+    const rain = [300,302,500,501,502,511,520,521,522,900];
+    const snow = [600,601,602,610,611,612,621,622,623];
+    const cloudy = [700,711,721,731,741,751,803,804];
+    const clearsky = [800,801,802];
+    if (thunder.includes(code)) {
+        weatherContainer.classList.add('thunder');
+        h2.innerHTML = `You can expect thunder and lightning`;
+        h3.innerHTML = `Stay in and get cozy if you can`;
+    } else if (rain.includes(code)) {
+        weatherContainer.classList.add('rain');
+        h2.innerHTML = `It's rainy today`;
+        h3.innerHTML = `Don't forget your umbrella`;
+    } else if (snow.includes(code)) {
+        weatherContainer.classList.add('snow');
+        h2.innerHTML = `It's snowing outside`;
+        h3.innerHTML = `Don't forget your winter coat`;
+    } else if (cloudy.includes(code)) {
+        weatherContainer.classList.add('cloud');
+        h2.innerHTML = `Today is so cloudy`;
+        h3.innerHTML = `Don't expect to see the sun`;
+    } else {
+        weatherContainer.classList.add('clearsky');
+        h2.innerHTML = `Today's skies are fairly clear`;
+        h3.innerHTML = `Don't forget your sunscreen`;
+    }
+}
+
 async function displayData() {
     await storeData();
     await storeWeather();
     await storeForecast();
+    changeInfo(userWeather.weather.code);
     displayTemp.innerHTML = `${userWeather.temp}°`;
     displayLocation.innerHTML = `${userLocation.city}, ${userLocation.region}`;
     displayTime.innerHTML = `${userWeather.datetime}`;
