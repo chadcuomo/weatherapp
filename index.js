@@ -10,6 +10,8 @@ const displayWind = document.querySelector('.wind');
 const weatherContainer = document.querySelector('.main-weather');
 const h2 = document.querySelector('h2');
 const h3 = document.querySelector('h3');
+const button = document.querySelector('.button');
+const button2 = document.querySelector('.button2');
 
 const dayOne = document.querySelector('.day1');
 const oneTemp = document.querySelector('.mon');
@@ -36,6 +38,7 @@ const weatherKey = '1446f31a2dcb4ec692617ff84214db36';
 let userLocation = [];
 let userWeather = [];
 let userForecast = [];
+let userInfo = [];
 
 
 async function fetchCity() {
@@ -47,18 +50,18 @@ async function fetchCity() {
 async function storeData() {
     let location = await fetchCity();
     userLocation = location;
+    userInfo = `${userLocation.city}, ${userLocation.region}`;
+    return userInfo;
 }
 
-async function fetchWeather() {
-    await storeData();
-    const resp = await fetch(`https://api.weatherbit.io/v2.0/current?city=${userLocation.city},${userLocation.region}&key=${weatherKey}&units=I`);
+async function fetchWeather(location = userInfo) {
+    const resp = await fetch(`https://api.weatherbit.io/v2.0/current?city=${location}&key=${weatherKey}&units=I`);
     const weather = await resp.json();
     return weather;
 }
 
-async function fetchForecast() {
-    await storeData();
-    const resp = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${userLocation.city},${userLocation.region}&days=8&key=${weatherKey}&units=I`);
+async function fetchForecast(location = userInfo) {
+    const resp = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${location}&days=8&key=${weatherKey}&units=I`);
     const weather = await resp.json();
     return weather;
 }
@@ -72,15 +75,15 @@ async function storeWeather() {
 async function storeForecast() {
     let forecast = await fetchForecast();
     userForecast = forecast.data;
-    console.log(userForecast);
 }
 
+
 function changeInfo(code) {
-    const thunder = [200,201,202,230,231,232,233];
-    const rain = [300,302,500,501,502,511,520,521,522,900];
-    const snow = [600,601,602,610,611,612,621,622,623];
-    const cloudy = [700,711,721,731,741,751,803,804];
-    const clearsky = [800,801,802];
+    const thunder = ['200','201','202','230','231','232','233'];
+    const rain = ['300','302','500','501','502','511','520','521','522','900'];
+    const snow = ['600','601','602','610','611','612','621','622','623'];
+    const cloudy = ['700','711','721','731','741','751','802','803','804'];
+    const clearsky = ['800','801'];
     if (thunder.includes(code)) {
         weatherContainer.classList.add('thunder');
         h2.innerHTML = `You can expect thunder and lightning`;
@@ -97,7 +100,7 @@ function changeInfo(code) {
         weatherContainer.classList.add('cloud');
         h2.innerHTML = `Today is so cloudy`;
         h3.innerHTML = `Don't expect to see the sun`;
-    } else {
+    } else if (clearsky.includes(code)) {
         weatherContainer.classList.add('clearsky');
         h2.innerHTML = `Today's skies are fairly clear`;
         h3.innerHTML = `Don't forget your sunscreen`;
@@ -105,14 +108,14 @@ function changeInfo(code) {
 }
 
 async function displayData() {
-    await storeData();
     await storeWeather();
     await storeForecast();
+    console.log(userInfo);
     changeInfo(userWeather.weather.code);
     displayTemp.innerHTML = `${userWeather.temp}°`;
-    displayLocation.innerHTML = `${userLocation.city}, ${userLocation.region}`;
+    displayLocation.innerHTML = `${userInfo}`;
     displayTime.innerHTML = `${userWeather.datetime}`;
-    displayCity.innerHTML = `${userLocation.city}`;
+    displayCity.innerHTML = `${userInfo}`;
     displayCloud.innerHTML = `${userWeather.clouds}%`;
     displayPrecip.innerHTML = `${userWeather.precip} in.`;
     displayHumidity.innerHTML = `${userWeather.rh}%`;
@@ -146,5 +149,28 @@ async function displayData() {
     
 }
 
-displayData();
-storeForecast();
+async function changeLocation() {
+    console.log(userInfo)
+    const newUserInfo = prompt("Please enter City, State:", `${userInfo}`);
+    if (newUserInfo === null || newUserInfo === '') {
+        return
+    } else{
+        userInfo = newUserInfo;
+    console.log(userInfo);
+    weatherContainer.className = 'main-weather';
+    await storeWeather();
+    await storeForecast();
+    await displayData(); 
+    console.log(userInfo);
+    }
+}
+
+button.addEventListener('click', changeLocation);
+button2.addEventListener('click', changeLocation);
+
+storeData().then(() => {
+    displayData();
+})
+
+
+
