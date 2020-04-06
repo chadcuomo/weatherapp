@@ -40,6 +40,18 @@ let userWeather = [];
 let userForecast = [];
 let userInfo = [];
 
+// get a new date (locale machine date time)
+var date = new Date();
+// get the date as a string
+var n = date.toDateString();
+// get the time as a string
+var time = date.toLocaleTimeString();
+
+// log the date in the browser console
+console.log('date:', n);
+// log the time in the browser console
+console.log('time:',time);
+
 
 async function fetchCity() {
     const resp = await fetch('https://ipapi.co/json/');
@@ -99,7 +111,7 @@ function changeInfo(code) {
     } else if (cloudy.includes(code)) {
         weatherContainer.classList.add('cloud');
         h2.innerHTML = `Today is so cloudy`;
-        h3.innerHTML = `Don't expect to see the sun`;
+        h3.innerHTML = `You may not see the sun`;
     } else if (clearsky.includes(code)) {
         weatherContainer.classList.add('clearsky');
         h2.innerHTML = `Today's skies are fairly clear`;
@@ -114,7 +126,7 @@ async function displayData() {
     changeInfo(userWeather.weather.code);
     displayTemp.innerHTML = `${userWeather.temp}°`;
     displayLocation.innerHTML = `${userInfo}`;
-    displayTime.innerHTML = `${userWeather.datetime}`;
+    displayTime.innerHTML = `${n}, ${time}`;
     displayCity.innerHTML = `${userInfo}`;
     displayCloud.innerHTML = `${userWeather.clouds}%`;
     displayPrecip.innerHTML = `${userWeather.precip} in.`;

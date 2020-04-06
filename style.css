@@ -206,5 +206,40 @@ h4 {
 
   .details {
     width: 98%;
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+}
+
+@media only screen and (max-width: 635px) {
+  .main-weather h1 {
+    font-size: 150px;
+  }
+
+  .main-weather h2 {
+    margin-top: 30px;
+    font-size: 32px;
+  }
+
+  .main-weather h3 {
+    font-size: 26px;
+  }
+
+  .details {
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .time-location {
+    margin-top: -5px;
+    justify-content: center;
+  }
+
+  .location {
+    display: none;
+  }
+
+  .location-two {
+    display: flex;
   }
 }
