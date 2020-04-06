@@ -184,3 +184,27 @@ h4 {
 .avg {
   text-align: right;
 }
+
+@media only screen and (max-width: 1200px) {
+  .main-container {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .main-container {
+    flex-wrap: wrap;
+  }
+
+  .main-weather {
+    width: 98%;
+  }
+
+  .location-two {
+    display: none;
+  }
+
+  .details {
+    width: 98%;
+  }
+}
