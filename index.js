@@ -12,28 +12,20 @@ const h2 = document.querySelector('h2');
 const h3 = document.querySelector('h3');
 const button = document.querySelector('.button');
 const button2 = document.querySelector('.button2');
-
 const dayOne = document.querySelector('.day1');
 const oneTemp = document.querySelector('.mon');
-
 const dayTwo = document.querySelector('.day2');
 const twoTemp = document.querySelector('.tue');
-
 const dayThree = document.querySelector('.day3');
 const threeTemp = document.querySelector('.wed');
-
 const dayFour = document.querySelector('.day4');
 const fourTemp = document.querySelector('.thurs');
-
 const dayFive = document.querySelector('.day5');
 const fiveTemp = document.querySelector('.fri');
-
 const daySix = document.querySelector('.day6');
 const sixTemp = document.querySelector('.sat');
-
 const daySeven = document.querySelector('.day7');
 const sevenTemp = document.querySelector('.sun');
-
 const weatherKey = '1446f31a2dcb4ec692617ff84214db36';
 let userLocation = [];
 let userWeather = [];
@@ -46,12 +38,6 @@ var date = new Date();
 var n = date.toDateString();
 // get the time as a string
 var time = date.toLocaleTimeString();
-
-// log the date in the browser console
-console.log('date:', n);
-// log the time in the browser console
-console.log('time:',time);
-
 
 async function fetchCity() {
     const resp = await fetch('https://ipapi.co/json/');
@@ -81,7 +67,6 @@ async function fetchForecast(location = userInfo) {
 async function storeWeather() {
     let currentWeather = await fetchWeather();
     userWeather = currentWeather.data[0];
-    console.log(userWeather);
 }
 
 async function storeForecast() {
@@ -122,7 +107,6 @@ function changeInfo(code) {
 async function displayData() {
     await storeWeather();
     await storeForecast();
-    console.log(userInfo);
     changeInfo(userWeather.weather.code);
     displayTemp.innerHTML = `${userWeather.temp}°`;
     displayLocation.innerHTML = `${userInfo}`;
@@ -134,22 +118,16 @@ async function displayData() {
     displayWind.innerHTML = `${userWeather.wind_spd} mph`;
     dayOne.innerHTML = `${userForecast[1].datetime}`;
     oneTemp.innerHTML = `${userForecast[1].temp}°`;
-
     dayTwo.innerHTML = `${userForecast[2].datetime}`;
     twoTemp.innerHTML = `${userForecast[2].temp}°`;
-
     dayThree.innerHTML = `${userForecast[3].datetime}`;
     threeTemp.innerHTML = `${userForecast[3].temp}°`;
-
     dayFour.innerHTML = `${userForecast[4].datetime}`;
     fourTemp.innerHTML = `${userForecast[4].temp}°`;
-
     dayFive.innerHTML = `${userForecast[5].datetime}`;
     fiveTemp.innerHTML = `${userForecast[5].temp}°`;
-
     daySix.innerHTML = `${userForecast[6].datetime}`;
     sixTemp.innerHTML = `${userForecast[6].temp}°`;
-
     daySeven.innerHTML = `${userForecast[7].datetime}`;
     sevenTemp.innerHTML = `${userForecast[7].temp}°`;
 
@@ -162,18 +140,15 @@ async function displayData() {
 }
 
 async function changeLocation() {
-    console.log(userInfo)
     const newUserInfo = prompt("Please enter City, State:", `${userInfo}`);
     if (newUserInfo === null || newUserInfo === '') {
         return
     } else{
         userInfo = newUserInfo;
-    console.log(userInfo);
     weatherContainer.className = 'main-weather';
     await storeWeather();
     await storeForecast();
     await displayData(); 
-    console.log(userInfo);
     }
 }
 
