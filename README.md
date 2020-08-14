@@ -17,7 +17,7 @@
 
 * Twitter: [@chad\_cuomo](https://twitter.com/chad\_cuomo)
 * Github: [@chadcuomo](https://github.com/chadcuomo)
-* LinkedIn: [@Chad Cuomo](https://linkedin.com/in/Chad Cuomo)
+* LinkedIn: [@Chad Cuomo](https://linkedin.com/in/ChadCuomo)
 
 ## Show your support
 
