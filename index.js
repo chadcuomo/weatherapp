@@ -76,11 +76,11 @@ async function storeForecast() {
 
 
 function changeInfo(code) {
-    const thunder = ['200','201','202','230','231','232','233'];
-    const rain = ['300','302','500','501','502','511','520','521','522','900'];
-    const snow = ['600','601','602','610','611','612','621','622','623'];
-    const cloudy = ['700','711','721','731','741','751','802','803','804'];
-    const clearsky = ['800','801'];
+    const thunder = [200,201,202,230,231,232,233];
+    const rain = [300,302,500,501,502,511,520,521,522,900];
+    const snow = [600,601,602,610,611,612,621,622,623];
+    const cloudy = [700,711,721,731,741,751,802,803,804];
+    const clearsky = [800,801];
     if (thunder.includes(code)) {
         weatherContainer.classList.add('thunder');
         h2.innerHTML = `You can expect thunder and lightning`;
@@ -102,6 +102,7 @@ function changeInfo(code) {
         h2.innerHTML = `Today's skies are fairly clear`;
         h3.innerHTML = `Don't forget your sunscreen`;
     }
+    console.log(typeof code);
 }
 
 async function displayData() {
